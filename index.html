@@ -13,8 +13,8 @@
           <p class="eyebrow">Markov Chain RPS</p>
           <h1>Predict the next move. Beat the bot.</h1>
           <p class="subhead">
-            The AI learns from your last 10 moves, predicts your next one, and
-            plays the counter.
+            Swap between last-10 and persistent AI to see how the matchup
+            changes.
           </p>
         </div>
         <div class="scoreboard">
@@ -35,6 +35,9 @@
             <span id="rounds" class="value">0</span>
           </div>
         </div>
+        <button id="ai-mode-toggle" class="toggle mode-toggle" type="button">
+          AI mode: Last 10
+        </button>
       </header>
 
       <section class="controls">
@@ -58,9 +61,58 @@
             <p id="outcome" class="big">—</p>
           </div>
         </div>
-        <div class="insight">
-          <p class="label">AI prediction</p>
-          <p id="prediction" class="detail">—</p>
+        <div class="forecast-header">
+          <p class="label">AI forecast</p>
+          <button id="forecast-toggle" class="toggle" type="button">
+            Show AI forecast
+          </button>
+        </div>
+        <div id="forecast" class="forecast is-hidden">
+          <div class="forecast-block">
+            <p class="label">Last 10 AI</p>
+            <div class="forecast-item">
+              <span class="forecast-label">Player just played</span>
+              <span class="detail" id="forecast-last10-last">—</span>
+            </div>
+            <div class="forecast-item">
+              <span class="forecast-label">Player will play</span>
+              <span class="detail" id="forecast-last10-next">—</span>
+            </div>
+            <div class="forecast-item">
+              <span class="forecast-label">AI will play</span>
+              <span class="detail" id="forecast-last10-ai">—</span>
+            </div>
+          </div>
+          <div class="forecast-block">
+            <p class="label">Persistent AI</p>
+            <div class="forecast-item">
+              <span class="forecast-label">Player just played</span>
+              <span class="detail" id="forecast-persist-last">—</span>
+            </div>
+            <div class="forecast-item">
+              <span class="forecast-label">Player will play</span>
+              <span class="detail" id="forecast-persist-next">—</span>
+            </div>
+            <div class="forecast-item">
+              <span class="forecast-label">AI will play</span>
+              <span class="detail" id="forecast-persist-ai">—</span>
+            </div>
+          </div>
+          <div class="forecast-block">
+            <p class="label">Random (control)</p>
+            <div class="forecast-item">
+              <span class="forecast-label">Player just played</span>
+              <span class="detail" id="forecast-random-last">—</span>
+            </div>
+            <div class="forecast-item">
+              <span class="forecast-label">Player will play</span>
+              <span class="detail" id="forecast-random-next">—</span>
+            </div>
+            <div class="forecast-item">
+              <span class="forecast-label">AI will play</span>
+              <span class="detail" id="forecast-random-ai">—</span>
+            </div>
+          </div>
           <p class="hint" id="hint">Play a few rounds to train the model.</p>
         </div>
       </section>
@@ -75,6 +127,27 @@
             <p class="label">Transition snapshot</p>
             <pre id="transitions" class="code"></pre>
           </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="graph-header">
+          <div>
+            <p class="label">Round blocks</p>
+            <p class="graph-subhead">Each bar stacks 10 rounds.</p>
+          </div>
+          <div class="graph-legend">
+            <span class="legend-item win">Player win</span>
+            <span class="legend-item loss">AI win</span>
+            <span class="legend-item draw">Draw</span>
+          </div>
+        </div>
+        <div id="graph-scroll" class="graph-scroll" aria-label="Round history graph">
+          <div id="graph" class="graph-bars"></div>
+        </div>
+        <div class="math-panel">
+          <p class="label">Current math</p>
+          <pre id="math-box" class="code math-box"></pre>
         </div>
       </section>
 
