@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Markov Chain RPS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Markov Chain RPS</p>
+          <h1>Predict the next move. Beat the bot.</h1>
+          <p class="subhead">
+            The AI learns from your last 10 moves, predicts your next one, and
+            plays the counter.
+          </p>
+        </div>
+        <div class="scoreboard">
+          <div class="stat">
+            <span class="label">Wins</span>
+            <span id="wins" class="value">0</span>
+          </div>
+          <div class="stat">
+            <span class="label">Losses</span>
+            <span id="losses" class="value">0</span>
+          </div>
+          <div class="stat">
+            <span class="label">Draws</span>
+            <span id="draws" class="value">0</span>
+          </div>
+          <div class="stat">
+            <span class="label">Rounds</span>
+            <span id="rounds" class="value">0</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="controls">
+        <button class="move" data-move="rock">Rock</button>
+        <button class="move" data-move="paper">Paper</button>
+        <button class="move" data-move="scissors">Scissors</button>
+      </section>
+
+      <section class="panel">
+        <div class="result">
+          <div>
+            <p class="label">You played</p>
+            <p id="player-move" class="big">—</p>
+          </div>
+          <div>
+            <p class="label">AI played</p>
+            <p id="ai-move" class="big">—</p>
+          </div>
+          <div>
+            <p class="label">Outcome</p>
+            <p id="outcome" class="big">—</p>
+          </div>
+        </div>
+        <div class="insight">
+          <p class="label">AI prediction</p>
+          <p id="prediction" class="detail">—</p>
+          <p class="hint" id="hint">Play a few rounds to train the model.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="history">
+          <div>
+            <p class="label">Last 10 moves</p>
+            <div id="history" class="history-grid"></div>
+          </div>
+          <div>
+            <p class="label">Transition snapshot</p>
+            <pre id="transitions" class="code"></pre>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <button id="reset" class="reset">Reset local data</button>
+        <p class="fine">Stored locally in your browser via localStorage.</p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
